@@ -1,0 +1,60 @@
+[package]
+name = "runner"
+version = "0.1.0"
+authors = ["Tim Visee <3a4fb3964f@sinenomine.email>"]
+edition = "2021"
+
+[dependencies]
+rayon = "1.5"
+took = "0.1"
+
+# Days
+#day01a = { path = "../day01a" }
+#day01b = { path = "../day01b" }
+#day02a = { path = "../day02a" }
+#day02b = { path = "../day02b" }
+#day03a = { path = "../day03a" }
+#day03b = { path = "../day03b" }
+#day04a = { path = "../day04a" }
+#day04b = { path = "../day04b" }
+#day05a = { path = "../day05a" }
+#day05b = { path = "../day05b" }
+#day06a = { path = "../day06a" }
+#day06b = { path = "../day06b" }
+#day07a = { path = "../day07a" }
+#day07b = { path = "../day07b" }
+#day08a = { path = "../day08a" }
+#day08b = { path = "../day08b" }
+#day09a = { path = "../day09a" }
+#day09b = { path = "../day09b" }
+#day10a = { path = "../day10a" }
+#day10b = { path = "../day10b" }
+#day11a = { path = "../day11a" }
+#day11b = { path = "../day11b" }
+#day12a = { path = "../day12a" }
+#day12b = { path = "../day12b" }
+#day13a = { path = "../day13a" }
+#day13b = { path = "../day13b" }
+#day14a = { path = "../day14a" }
+#day14b = { path = "../day14b" }
+#day15a = { path = "../day15a" }
+#day15b = { path = "../day15b" }
+#day16a = { path = "../day16a" }
+#day16b = { path = "../day16b" }
+#day17a = { path = "../day17a" }
+#day17b = { path = "../day17b" }
+#day18a = { path = "../day18a" }
+#day18b = { path = "../day18b" }
+#day19a = { path = "../day19a" }
+#day19b = { path = "../day19b" }
+#day20a = { path = "../day20a" }
+#day20b = { path = "../day20b" }
+#day21a = { path = "../day21a" }
+#day21b = { path = "../day21b" }
+#day22a = { path = "../day22a" }
+#day22b = { path = "../day22b" }
+#day23a = { path = "../day23a" }
+#day23b = { path = "../day23b" }
+#day24a = { path = "../day24a" }
+#day24b = { path = "../day24b" }
+#day25a = { path = "../day25a" }
