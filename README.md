@@ -20,7 +20,7 @@ invoking the binary to getting the output.
 
 |                                                | part A                              | part B                              |
 |:-----------------------------------------------|:------------------------------------|:------------------------------------|
-| [day 1](https://adventofcode.com/2021/day/1)   | [`     ? ms`](./day01a/src/main.rs) | [`     ? ms`](./day01b/src/main.rs) |
+| [day 1](https://adventofcode.com/2021/day/1)   | [`  0.025ms`](./day01a/src/main.rs) | [`  0.024ms`](./day01b/src/main.rs) |
 
 ## Run solutions
 
@@ -30,15 +30,15 @@ run the project to see the solution appear.
 ```bash
 # Switch to day 1a, and run it
 cd day01a
-cargo run --release
+cargo +nightly run --release
 
 # or run everything in parallel
 cd ../runner
-cargo run --release --bin runner-par
+cargo +nightly run --release --bin runner-par
 
 # or benchmark every day
 cd ../runner
-cargo run --release --bin bench
+cargo +nightly run --release --bin bench
 ```
 
 Some solutions might require Rust Nightly.
