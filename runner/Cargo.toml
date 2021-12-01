@@ -9,8 +9,8 @@ rayon = "1.5"
 took = "0.1"
 
 # Days
-#day01a = { path = "../day01a" }
-#day01b = { path = "../day01b" }
+day01a = { path = "../day01a" }
+day01b = { path = "../day01b" }
 #day02a = { path = "../day02a" }
 #day02b = { path = "../day02b" }
 #day03a = { path = "../day03a" }
