@@ -6,7 +6,7 @@ pub fn main() {
         include_str!("../input.txt")
             .lines()
             .map(|n| n.parse().unwrap())
-            .collect::<Vec<usize>>()
+            .collect::<Vec<u16>>()
             .array_windows()
             .filter(|[a, b]| a < b)
             .count(),
