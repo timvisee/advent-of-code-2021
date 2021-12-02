@@ -4,7 +4,7 @@ My [Advent of Code 2021][aoc-2021] solutions in the Rust programming language.
 This repository holds a separate Rust project for each day and part.
 
 I attempt to develop a standalone, elegant, compact and fast solution for each
-problem (day part).
+problem (two each day).
 
 Previous year I did the same, solving everything in under a second:
 
@@ -13,14 +13,14 @@ Previous year I did the same, solving everything in under a second:
 
 ## Timings
 
-Here is how long each solution takes to run to completion. All solutions are
-measured (non scientifically) with [`hyperfine`][hyperfine] on an `AMD Ryzen 9
-5900X (24) @ 3.7GHz` machine running Linux. Timings include everything from
-invoking the binary to getting the output.
+Here is how long each solution runs. All solutions are measured (non
+scientifically) with [`hyperfine`][hyperfine] on an `AMD Ryzen 9 5900X (24) @
+3.7GHz` machine running Linux.
 
 |                                                | part A                              | part B                              |
 |:-----------------------------------------------|:------------------------------------|:------------------------------------|
 | [day 1](https://adventofcode.com/2021/day/1)   | [`  0.025ms`](./day01a/src/main.rs) | [`  0.024ms`](./day01b/src/main.rs) |
+| [day 2](https://adventofcode.com/2021/day/2)   | [`  0.024ms`](./day02a/src/main.rs) | [`  0.025ms`](./day02b/src/main.rs) |
 
 ## Run solutions
 
@@ -41,7 +41,7 @@ cd ../runner
 cargo +nightly run --release --bin bench
 ```
 
-Some solutions might require Rust Nightly.
+Some solutions require Rust Nightly, that's why `+nightly` is included.
 
 ## Other years
 
