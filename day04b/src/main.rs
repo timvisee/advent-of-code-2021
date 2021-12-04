@@ -1,6 +1,6 @@
 #![feature(drain_filter)]
 
-use std::collections::BTreeMap;
+use std::collections::HashMap;
 
 const ROW: u32 = 0b11111;
 const COL: u32 = 0b100001000010000100001;
@@ -8,7 +8,7 @@ const COL: u32 = 0b100001000010000100001;
 pub fn main() {
     let (nums, boards) = include_str!("../input.txt").split_once("\n\n").unwrap();
 
-    let mut boards: Vec<(BTreeMap<u8, usize>, u32)> = boards
+    let mut boards: Vec<(HashMap<u8, usize>, u32)> = boards
         .split("\n\n")
         .map(|b| {
             (
