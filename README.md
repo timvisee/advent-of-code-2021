@@ -23,7 +23,7 @@ scientifically) with [`hyperfine`][hyperfine] on an `AMD Ryzen 9 5900X (24) @
 | [day 2](https://adventofcode.com/2021/day/2)   | [`  0.024ms`](./day02a/src/main.rs) | [`  0.025ms`](./day02b/src/main.rs) |
 | [day 3](https://adventofcode.com/2021/day/3)   | [`  0.021ms`](./day03a/src/main.rs) | [`  0.023ms`](./day03b/src/main.rs) |
 | [day 4](https://adventofcode.com/2021/day/4)   | [`  0.088ms`](./day04a/src/main.rs) | [`  0.137ms`](./day04b/src/main.rs) |
-| [day 5](https://adventofcode.com/2021/day/5)   | [`  0.562ms`](./day04a/src/main.rs) | [`  0.642ms`](./day05b/src/main.rs) |
+| [day 5](https://adventofcode.com/2021/day/5)   | [`  0.401ms`](./day04a/src/main.rs) | [`  0.460ms`](./day05b/src/main.rs) |
 
 ## Run solutions
 

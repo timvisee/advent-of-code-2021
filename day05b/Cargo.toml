@@ -6,3 +6,7 @@ edition = "2021"
 
 [lib]
 path = "src/main.rs"
+
+[dependencies]
+atoi = "0.4"
+nom = "6"
