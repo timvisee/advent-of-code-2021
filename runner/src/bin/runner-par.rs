@@ -3,11 +3,7 @@ use took::Timer;
 
 fn main() {
     // Build threadpool with larger stack size
-    rayon::ThreadPoolBuilder::new()
-        .num_threads(4)
-        .stack_size(12_800_000)
-        .build_global()
-        .unwrap();
+    rayon::ThreadPoolBuilder::new().build_global().unwrap();
 
     let jobs = runner::jobs();
     let timer = Timer::new();
