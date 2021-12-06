@@ -14,8 +14,8 @@ Previous year I did the same, solving everything in under a second:
 ## Timings
 
 Here is how long each solution runs. All solutions are measured (non
-scientifically) with [`hyperfine`][hyperfine] on an `AMD Ryzen 9 5900X (24) @
-3.7GHz` machine running Linux.
+scientifically) in [`bench.rs`](./runner/src/bin/bench.rs) on an
+`AMD Ryzen 9 5900X (24) @ 3.7GHz` machine running Linux.
 
 |                                                | part A                              | part B                              |
 |:-----------------------------------------------|:------------------------------------|:------------------------------------|
@@ -61,4 +61,3 @@ This project is released under the GNU GPL-3.0 license.
 Check out the [LICENSE](LICENSE) file for more information.
 
 [aoc-2021]: https://adventofcode.com/2021
-[hyperfine]: https://github.com/sharkdp/hyperfine
