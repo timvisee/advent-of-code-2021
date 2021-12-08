@@ -28,9 +28,9 @@ scientifically) in [`bench.rs`](./runner/src/bin/bench.rs) on an
 | [day 7](https://adventofcode.com/2021/day/7)   | [`  0.013ms`](./day07a/src/main.rs) | [`  0.013ms`](./day07b/src/main.rs) |
 | [day 8](https://adventofcode.com/2021/day/8)   | [`  0.008ms`](./day08a/src/main.rs) | [`  0.066ms`](./day08b/src/main.rs) |
 
-|              | one-by-one (1 CPU core)                  | parallel                               |
-|:-------------|:-----------------------------------------|:---------------------------------------|
-| _everything_ | [`0.0797ms`](./runner/src/bin/runner.rs) | [`?`](./runner/src/bin/runner-par.rs)  |
+|              | one-by-one (1 CPU core)                 | parallel                               |
+|:-------------|:----------------------------------------|:---------------------------------------|
+| _everything_ | [`0.797ms`](./runner/src/bin/runner.rs) | [`?`](./runner/src/bin/runner-par.rs)  |
 
 ## Run solutions
 
