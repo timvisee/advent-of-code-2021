@@ -1,15 +1,17 @@
 pub fn main() {
     println!(
         "{}",
-        include_str!("../input.txt")
-            .lines()
+        include_bytes!("../input.txt")
+            .split(|&b| b == b'\n')
             .map(|line| {
-                let (ex, digits) = line.split_once('|').unwrap();
-                let ex = ex.split_ascii_whitespace().collect::<Vec<_>>();
-                let one = ex.iter().find(|d| d.len() == 2).unwrap();
-                let four = ex.iter().find(|d| d.len() == 4).unwrap();
-                digits
-                    .split_ascii_whitespace()
+                let mut part = line.splitn(2, |&b| b == b'|');
+                let mut input = part.next().unwrap().split(|&b| b == b' ');
+                let one = input.clone().find(|d| d.len() == 2).unwrap();
+                let four = input.find(|d| d.len() == 4).unwrap();
+                part.next()
+                    .unwrap()
+                    .split(|&b| b == b' ')
+                    .skip(1)
                     .map(|d| match d.len() {
                         2 => 1,
                         3 => 7,
@@ -17,8 +19,8 @@ pub fn main() {
                         7 => 8,
                         len => match (
                             len,
-                            d.bytes().filter(|&b| one.contains(b as char)).count(),
-                            d.bytes().filter(|&b| four.contains(b as char)).count(),
+                            d.iter().filter(|&b| one.contains(b)).count(),
+                            d.iter().filter(|&b| four.contains(b)).count(),
                         ) {
                             (5, 1, 3) => 5,
                             (5, 2, 3) => 3,
