@@ -10,7 +10,7 @@ pub fn main() {
         .split("\n\n")
         .map(|b| {
             (
-                b.split_whitespace()
+                b.split_ascii_whitespace()
                     .enumerate()
                     .map(|(i, n)| (n.parse().unwrap(), i))
                     .collect(),
