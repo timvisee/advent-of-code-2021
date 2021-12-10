@@ -18,7 +18,7 @@ pub fn jobs() -> &'static [(fn(), &'static str)] {
         (day08b::main, "day08b"),
         (day09a::main, "day09a"),
         (day09b::main, "day09b"),
-        // (day10a::main, "day10a"),
+        (day10a::main, "day10a"),
         // (day10b::main, "day10b"),
         // (day11a::main, "day11a"),
         // (day11b::main, "day11b"),
