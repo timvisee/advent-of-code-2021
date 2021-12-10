@@ -4,14 +4,14 @@ pub fn main() {
     let mut scores = include_str!("../input.txt")
         .lines()
         .filter_map(|seq| {
-            let mut stack = Vec::with_capacity(110);
+            let mut s = Vec::with_capacity(110);
             seq.bytes()
                 .all(|c| match c {
-                    c if matches!(c, b'(' | b'[' | b'{' | b'<') => stack.push(c) == (),
-                    b')' => stack.pop().unwrap() == b'(',
-                    c => stack.pop().unwrap() == c - 2,
+                    c if matches!(c, b'(' | b'[' | b'{' | b'<') => s.push(c) == (),
+                    b')' => s.pop().unwrap() == b'(',
+                    c => s.pop().unwrap() == c - 2,
                 })
-                .then(|| stack)
+                .then(|| s)
         })
         .map(|s| {
             s.iter()
