@@ -14,16 +14,9 @@ pub fn main() {
                 .then(|| s)
         })
         .map(|s| {
-            s.iter()
-                .rev()
-                .map(|c| match c {
-                    b'(' => 1,
-                    b'[' => 2,
-                    b'{' => 3,
-                    b'<' => 4,
-                    _ => unreachable!(),
-                })
-                .fold(0usize, |acc, v| acc * 5 + v)
+            s.iter().rev().fold(0usize, |acc, &c| {
+                acc * 5 + [1, 4, 2, 3][c as usize / 30 - 1]
+            })
         })
         .collect::<Vec<_>>();
 
