@@ -1,4 +1,4 @@
-use std::collections::HashMap;
+use std::collections::BTreeMap;
 
 pub fn main() {
     let data = include_str!("../input.txt");
@@ -11,7 +11,7 @@ pub fn main() {
 
     let start = id.binary_search(&"start").unwrap() as u8;
     let end = id.binary_search(&"end").unwrap() as u8;
-    let branches: HashMap<u8, Vec<(u8, bool)>> = data.lines().fold(HashMap::new(), |mut m, l| {
+    let branches: BTreeMap<u8, Vec<(u8, bool)>> = data.lines().fold(BTreeMap::new(), |mut m, l| {
         let (a, b) = l.split_once('-').unwrap();
         let a = (id.binary_search(&a).unwrap() as u8, a.as_bytes()[0] <= b'Z');
         let b = (id.binary_search(&b).unwrap() as u8, b.as_bytes()[0] <= b'Z');
@@ -25,7 +25,7 @@ pub fn main() {
     println!("{}", path(&branches, start, end, &mut vis));
 }
 
-fn path(m: &HashMap<u8, Vec<(u8, bool)>>, start: u8, cur: u8, vis: &mut Vec<u8>) -> usize {
+fn path(m: &BTreeMap<u8, Vec<(u8, bool)>>, start: u8, cur: u8, vis: &mut Vec<u8>) -> usize {
     m.get(&cur).unwrap().iter().fold(0, |acc, &(b, u)| match b {
         next if next == start => acc + 1,
         next if !u && vis.contains(&next) => acc,
