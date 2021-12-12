@@ -1,15 +1,15 @@
 const NEXT: [(isize, isize); 4] = [(0, -1), (0, 1), (-1, 0), (1, 0)];
 
 pub fn main() {
-    let mut input = include_bytes!("../input.txt")
+    let mut map = include_bytes!("../input.txt")
         .split(|&b| b == b'\n')
         .map(|l| l.to_vec())
-        .collect::<Vec<Vec<u8>>>();
+        .collect::<Vec<_>>();
 
     let mut basins = vec![];
-    for y in 0..input.len() {
-        for x in 0..input[0].len() {
-            (input[y][x] < b'9').then(|| basins.push(basin(&mut input, x, y)));
+    for y in 0..map.len() {
+        for x in 0..map[0].len() {
+            (map[y][x] < b'9').then(|| basins.push(basin(&mut map, x, y)));
         }
     }
 

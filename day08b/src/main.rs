@@ -32,7 +32,7 @@ pub fn main() {
                         },
                     })
                     .enumerate()
-                    .fold(0, |sum, (i, n)| sum + n * 10_u32.pow(3 - i as u32))
+                    .fold(0, |acc, (i, n)| acc + n * 10_u32.pow(3 - i as u32))
             })
             .sum::<u32>()
     );

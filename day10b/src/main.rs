@@ -4,7 +4,7 @@ pub fn main() {
     let mut scores = include_str!("../input.txt")
         .lines()
         .filter_map(|seq| {
-            let mut s = Vec::with_capacity(110);
+            let mut s = Vec::with_capacity(64);
             seq.bytes()
                 .all(|c| match c {
                     c if matches!(c, b'(' | b'[' | b'{' | b'<') => s.push(c) == (),
