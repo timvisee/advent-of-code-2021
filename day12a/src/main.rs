@@ -1,28 +1,38 @@
 use std::collections::HashMap;
 
 pub fn main() {
-    let branches = include_str!("../input.txt")
+    let data = include_str!("../input.txt");
+    let mut id = data
         .lines()
-        .map(|l| l.split_once("-").unwrap())
-        .fold(HashMap::new(), |mut m, (a, b)| {
-            m.entry(a).or_insert_with(|| Vec::with_capacity(6)).push(b);
-            m.entry(b).or_insert_with(|| Vec::with_capacity(6)).push(a);
-            m
-        });
+        .flat_map(|l| l.splitn(2, '-'))
+        .collect::<Vec<_>>();
+    id.sort_unstable();
+    id.dedup();
 
-    let mut vis = Vec::from(["end"]);
-    vis.reserve(11);
-    println!("{}", path(&branches, "end", &mut vis));
+    let start = id.binary_search(&"start").unwrap() as u8;
+    let end = id.binary_search(&"end").unwrap() as u8;
+    let branches: HashMap<u8, Vec<(u8, bool)>> = data.lines().fold(HashMap::new(), |mut m, l| {
+        let (a, b) = l.split_once('-').unwrap();
+        let a = (id.binary_search(&a).unwrap() as u8, a.as_bytes()[0] <= b'Z');
+        let b = (id.binary_search(&b).unwrap() as u8, b.as_bytes()[0] <= b'Z');
+        m.entry(a.0).or_default().push(b);
+        m.entry(b.0).or_default().push(a);
+        m
+    });
+
+    let mut vis = Vec::from([end]);
+    vis.reserve(15);
+    println!("{}", path(&branches, start, end, &mut vis));
 }
 
-fn path(m: &HashMap<&str, Vec<&'static str>>, cur: &str, vis: &mut Vec<&str>) -> usize {
-    m.get(cur).unwrap().iter().fold(0, |acc, &b| match b {
-        "start" => acc + 1,
-        next if next.as_bytes()[0] > b'Z' && vis.contains(&next) => acc,
+fn path(m: &HashMap<u8, Vec<(u8, bool)>>, start: u8, cur: u8, vis: &mut Vec<u8>) -> usize {
+    m.get(&cur).unwrap().iter().fold(0, |acc, &(b, u)| match b {
+        next if next == start => acc + 1,
+        next if !u && vis.contains(&next) => acc,
         next => {
             let len = vis.len();
             vis.push(next);
-            let paths = path(m, next, vis);
+            let paths = path(m, start, next, vis);
             vis.truncate(len);
             acc + paths
         }
