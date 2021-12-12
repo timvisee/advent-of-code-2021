@@ -1,65 +1,65 @@
-#![feature(drain_filter, btree_drain_filter)]
-
-use std::cell::UnsafeCell;
 use std::collections::BTreeMap;
 
+const EDGES: usize = 12;
+
 pub fn main() {
-    let data = include_str!("../input.txt");
-    let mut id = data
-        .lines()
-        .flat_map(|l| l.splitn(2, '-'))
-        .collect::<Vec<_>>();
-    id.sort_unstable();
-    id.dedup();
+    let mut uc = vec![];
+    let mut id: BTreeMap<&str, u8> = BTreeMap::from([("start", 1), ("end", 0)]);
+    let mut map: BTreeMap<u8, Vec<u8>> = BTreeMap::new();
 
-    let start = id.binary_search(&"start").unwrap() as u8;
-    let end = id.binary_search(&"end").unwrap() as u8;
-    let mut edge: UnsafeCell<BTreeMap<_, Vec<_>>> =
-        UnsafeCell::new(data.lines().fold(BTreeMap::new(), |mut m, l| {
-            let (a, b) = l.split_once('-').unwrap();
-            let a = (id.binary_search(&a).unwrap() as u8, a.as_bytes()[0] <= b'Z');
-            let b = (id.binary_search(&b).unwrap() as u8, b.as_bytes()[0] <= b'Z');
-            m.entry(a.0).or_default().push(b);
-            m.entry(b.0).or_default().push(a);
-            m
-        }));
+    include_str!("../input.txt").lines().for_each(|l| {
+        let mut idx = |a| {
+            let idx = id.len() as u8;
+            *id.entry(a).or_insert_with(|| {
+                (a.as_bytes()[0] <= b'Z').then(|| uc.push(idx));
+                idx
+            })
+        };
+        let mut branch = |a, b| {
+            let entry = map.entry(a).or_insert_with(|| Vec::with_capacity(6));
+            (b != 0).then(|| entry.push(b));
+        };
+        let (a, b) = l.split_once('-').unwrap();
+        let (a, b) = (idx(a), idx(b));
+        branch(a, b);
+        branch(b, a);
+    });
 
-    // Eliminate large caves from input, map to all possible small caves
-    (0..id.len() as u8)
-        .filter(|e| id[*e as usize].as_bytes()[0] > b'Z')
-        .for_each(|e| {
-            edge.get_mut()
-                .get_mut(&e)
-                .unwrap()
-                .drain_filter(|next| next.1)
-                .collect::<Vec<_>>()
-                .into_iter()
-                .for_each(|(rm, _)| unsafe {
-                    // Safe because we fetch/update different values
-                    (&mut *edge.get())
-                        .get_mut(&e)
-                        .unwrap()
-                        .extend((&*edge.get()).get(&rm).unwrap())
-                });
-        });
-    edge.get_mut()
-        .drain_filter(|&c, _| id[c as usize].as_bytes()[0] <= b'Z');
+    let map = map
+        .keys()
+        .filter(|b| !uc.contains(b))
+        .map(|&b| {
+            (
+                b,
+                map[&b].iter().fold([0; EDGES], |mut chld, b| {
+                    if uc.contains(b) {
+                        map[b].iter().for_each(|b| chld[*b as usize] += 1);
+                    } else {
+                        chld[*b as usize] += 1;
+                    }
+                    chld
+                }),
+            )
+        })
+        .collect::<BTreeMap<_, _>>();
 
-    let mut vis = Vec::from([end]);
-    vis.reserve(10);
-    println!("{}", path(&edge.into_inner(), start, end, &mut vis));
-}
+    let mut todo: Vec<(u8, u8, usize)> = vec![(0, 1, 1)];
+    let (mut to, mut count) = ([1; EDGES], 0);
+    while let Some((a, b, s)) = todo.pop() {
+        to[b as usize] = a;
+        count += map[&a]
+            .iter()
+            .enumerate()
+            .filter(|&(_, routes)| *routes > 0)
+            .fold(0, |acc, (c, _)| match c {
+                1 => acc + s * map[&a][c],
+                v => {
+                    let visit = v != 0 && to[2..=b as usize].contains(&(v as u8));
+                    (!visit).then(|| todo.push((v as u8, b + 1, s * map[&a][v])));
+                    acc
+                }
+            });
+    }
 
-fn path(m: &BTreeMap<u8, Vec<(u8, bool)>>, start: u8, cur: u8, vis: &mut Vec<u8>) -> usize {
-    m.get(&cur).unwrap().iter().fold(0, |acc, &(b, u)| match b {
-        next if next == start => acc + 1,
-        next if !u && vis.contains(&next) => acc,
-        next => {
-            let len = vis.len();
-            vis.push(next);
-            let paths = path(m, start, next, vis);
-            vis.truncate(len);
-            acc + paths
-        }
-    })
+    println!("{}", count);
 }
