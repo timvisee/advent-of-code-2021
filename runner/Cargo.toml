@@ -33,8 +33,8 @@ day11a = { path = "../day11a" }
 day11b = { path = "../day11b" }
 day12a = { path = "../day12a" }
 day12b = { path = "../day12b" }
-#day13a = { path = "../day13a" }
-#day13b = { path = "../day13b" }
+day13a = { path = "../day13a" }
+day13b = { path = "../day13b" }
 #day14a = { path = "../day14a" }
 #day14b = { path = "../day14b" }
 #day15a = { path = "../day15a" }
