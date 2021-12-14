@@ -31,14 +31,11 @@ pub fn main() {
         .for_each(|key| num[rule.binary_search_by_key(&key, |r| &r.0).unwrap()] += 1);
 
     (0..40).for_each(|_| {
-        num.iter_mut()
-            .zip(&rule)
-            .filter(|(n, _)| **n != 0)
-            .for_each(|(n, r)| {
-                next[r.1] += *n;
-                next[r.2] += *n;
-                *n = 0;
-            });
+        num.iter_mut().zip(&rule).for_each(|(n, r)| {
+            next[r.1] += *n;
+            next[r.2] += *n;
+            *n = 0;
+        });
         mem::swap(&mut num, &mut next);
     });
 
