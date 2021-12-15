@@ -15,7 +15,7 @@ pub fn main() {
         "{}",
         dijkstra::dijkstra(
             &(0, 0),
-            |(x, y)| -> Vec<((_, _), _)> {
+            |(x, y)| {
                 NEXT.iter()
                     .map(|(xx, yy)| {
                         map.get((y + yy) as usize)
@@ -23,11 +23,11 @@ pub fn main() {
                             .map(|c| ((x + xx, y + yy), *c as u32))
                     })
                     .flatten()
-                    .collect()
+                    .collect::<Vec<_>>()
             },
             |&p| p == goal,
         )
         .unwrap()
-        .1
+        .1,
     );
 }

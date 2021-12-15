@@ -9,31 +9,31 @@ pub fn main() {
         .lines()
         .map(|l| l.bytes().map(|c| c - b'0').collect())
         .collect();
-    let (w, h) = (map[0].len(), map.len());
-    let goal = (w as i32 * 5 - 1, h as i32 * 5 - 1);
+    let s = map.len();
+    let goal = (s as i32 * 5 - 1, s as i32 * 5 - 1);
 
     println!(
         "{}",
         dijkstra::dijkstra(
             &(0, 0),
-            |&(x, y)| -> Vec<((_, _), _)> {
+            |&(x, y)| {
                 NEXT.iter()
                     .map(|&(xx, yy)| ((x + xx) as usize, (y + yy) as usize))
-                    .filter(|(x, y)| (x / 5 < w && y / 5 < h))
-                    .map(|(x, y)| -> Option<((i32, i32), u32)> {
-                        map.get(y % h).and_then(|r| r.get(x % w)).map(|c| {
+                    .filter(|(x, y)| (x / 5 < s && y / 5 < s))
+                    .map(|(x, y)| {
+                        map.get(y % s).and_then(|r| r.get(x % s)).map(|c| {
                             (
                                 (x as i32, y as i32),
-                                (((*c as usize + (x / w) + (y / h) - 1) % 9) + 1) as u32,
+                                ((*c as usize + (x / s) + (y / s) - 1) % 9 + 1) as u32,
                             )
                         })
                     })
                     .flatten()
-                    .collect()
+                    .collect::<Vec<_>>()
             },
             |&p| p == goal,
         )
         .unwrap()
-        .1
+        .1,
     );
 }
