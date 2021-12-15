@@ -1,6 +1,6 @@
 #![feature(int_abs_diff)]
 
-use pathfinding::directed::astar;
+use pathfinding::directed::dijkstra;
 
 const NEXT: [(i32, i32); 4] = [(1, 0), (-1, 0), (0, 1), (0, -1)];
 
@@ -13,7 +13,7 @@ pub fn main() {
 
     println!(
         "{}",
-        astar::astar(
+        dijkstra::dijkstra(
             &(0, 0),
             |(x, y)| -> Vec<((_, _), _)> {
                 NEXT.iter()
@@ -25,7 +25,6 @@ pub fn main() {
                     .flatten()
                     .collect()
             },
-            |p| (p.0.abs_diff(goal.0) + p.1.abs_diff(goal.1)) as u32 / 3,
             |&p| p == goal,
         )
         .unwrap()
