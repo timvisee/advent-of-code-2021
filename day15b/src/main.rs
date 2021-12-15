@@ -1,5 +1,3 @@
-#![feature(int_abs_diff)]
-
 use pathfinding::directed::dijkstra;
 
 const NEXT: [(i32, i32); 4] = [(1, 0), (-1, 0), (0, 1), (0, -1)];
