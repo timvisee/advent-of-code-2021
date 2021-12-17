@@ -42,6 +42,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "bytes"
+version = "1.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c4872d67bab6358e59559027aa3b9157c53d9358c51423c17554809a8858e0f8"
+
+[[package]]
 name = "cfg-if"
 version = "1.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -231,6 +237,20 @@ name = "day15b"
 version = "0.1.0"
 dependencies = [
  "pathfinding",
+]
+
+[[package]]
+name = "day16a"
+version = "0.1.0"
+dependencies = [
+ "bytes",
+]
+
+[[package]]
+name = "day16b"
+version = "0.1.0"
+dependencies = [
+ "bytes",
 ]
 
 [[package]]
@@ -445,6 +465,8 @@ dependencies = [
  "day14b",
  "day15a",
  "day15b",
+ "day16a",
+ "day16b",
  "rayon",
  "took",
 ]
