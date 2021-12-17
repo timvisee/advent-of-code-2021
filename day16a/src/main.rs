@@ -1,20 +1,14 @@
 use bytes::BytesMut;
 
 pub fn main() {
-    let mut bits =
-        include_str!("../input.txt")
-            .trim()
-            .chars()
-            .fold(BytesMut::new(), |mut bits, c| {
-                let b = u8::from_str_radix(&c.to_string(), 16).unwrap();
-                bits.extend_from_slice(&[
-                    (b & (1 << 3)) >> 3,
-                    (b & (1 << 2)) >> 2,
-                    (b & (1 << 1)) >> 1,
-                    b & 1,
-                ]);
-                bits
-            });
+    let mut bits = include_str!("../input.txt")
+        .trim()
+        .chars()
+        .flat_map(|c| {
+            let n = c.to_digit(16).unwrap();
+            (0..4).map(move |i| (1 & n >> (3 - i)) as u8)
+        })
+        .collect();
     println!("{}", packet(&mut bits));
 }
 
