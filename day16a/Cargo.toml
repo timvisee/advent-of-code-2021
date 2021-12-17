@@ -1,0 +1,11 @@
+[package]
+name = "day16a"
+version = "0.1.0"
+authors = ["Tim Visee <3a4fb3964f@sinenomine.email>"]
+edition = "2021"
+
+[lib]
+path = "src/main.rs"
+
+[dependencies]
+bytes = "1.1"
