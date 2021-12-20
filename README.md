@@ -36,10 +36,11 @@ scientifically) in [`bench.rs`](./runner/src/bin/bench.rs) on an
 | [day 15](https://adventofcode.com/2021/day/15) | [`  1.05 ms`](./day15a/src/main.rs) | [` 37.7  ms`](./day15b/src/main.rs) |
 | [day 16](https://adventofcode.com/2021/day/16) | [`  0.002ms`](./day16a/src/main.rs) | [`  0.007ms`](./day16b/src/main.rs) |
 | [day 17](https://adventofcode.com/2021/day/17) | [`  0.041ms`](./day17a/src/main.rs) | [`  0.095ms`](./day17b/src/main.rs) |
+| [day 18](https://adventofcode.com/2021/day/18) | [`  0.141ms`](./day18a/src/main.rs) | [`  2.61 ms`](./day18b/src/main.rs) |
 
 |              | one-by-one (1 CPU core)                  | parallel                                     |
 |:-------------|:-----------------------------------------|:---------------------------------------------|
-| _everything_ | [`39.91 ms`](./runner/src/bin/runner.rs) | [`39.37ms`](./runner/src/bin/runner-par.rs)  |
+| _everything_ | [`42.42 ms`](./runner/src/bin/runner.rs) | [`39.53ms`](./runner/src/bin/runner-par.rs)  |
 
 ## Run solutions
 
