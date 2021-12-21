@@ -1,6 +1,6 @@
 #![feature(drain_filter)]
 
-use std::collections::HashMap;
+use hashbrown::HashMap;
 
 const ROW: u32 = 0b11111;
 const COL: u32 = 0b100001000010000100001;
