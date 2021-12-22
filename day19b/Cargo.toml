@@ -1,0 +1,13 @@
+[package]
+name = "day19b"
+version = "0.1.0"
+authors = ["Tim Visee <3a4fb3964f@sinenomine.email>"]
+edition = "2021"
+
+[lib]
+path = "src/main.rs"
+
+[dependencies]
+hashbrown = "0.11"
+itertools = "0.10"
+nalgebra = "0.29"
