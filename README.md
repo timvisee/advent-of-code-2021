@@ -35,7 +35,7 @@ scientifically) in [`bench.rs`](./runner/src/bin/bench.rs) on an
 | [day 14](https://adventofcode.com/2021/day/14) | [`  0.007ms`](./day14a/src/main.rs) | [`  0.008ms`](./day14b/src/main.rs) |
 | [day 15](https://adventofcode.com/2021/day/15) | [`  1.05 ms`](./day15a/src/main.rs) | [` 37.7  ms`](./day15b/src/main.rs) |
 | [day 16](https://adventofcode.com/2021/day/16) | [`  0.002ms`](./day16a/src/main.rs) | [`  0.007ms`](./day16b/src/main.rs) |
-| [day 17](https://adventofcode.com/2021/day/17) | [`  0.041ms`](./day17a/src/main.rs) | [`  0.095ms`](./day17b/src/main.rs) |
+| [day 17](https://adventofcode.com/2021/day/17) | [` 0.0002ms`](./day17a/src/main.rs) | [`  0.095ms`](./day17b/src/main.rs) |
 | [day 18](https://adventofcode.com/2021/day/18) | [`  0.141ms`](./day18a/src/main.rs) | [`  2.61 ms`](./day18b/src/main.rs) |
 | [day 19](https://adventofcode.com/2021/day/19) | [`  1.03 ms`](./day19a/src/main.rs) | [`  1.03 ms`](./day19b/src/main.rs) |
 | [day 20](https://adventofcode.com/2021/day/20) | [`  0.042ms`](./day20a/src/main.rs) | [`  3.10 ms`](./day20b/src/main.rs) |
@@ -43,7 +43,7 @@ scientifically) in [`bench.rs`](./runner/src/bin/bench.rs) on an
 
 |              | one-by-one (1 CPU core)                  | parallel                                     |
 |:-------------|:-----------------------------------------|:---------------------------------------------|
-| _everything_ | [`48.58 ms`](./runner/src/bin/runner.rs) | [`39.53ms`](./runner/src/bin/runner-par.rs)  |
+| _everything_ | [`48.54 ms`](./runner/src/bin/runner.rs) | [`39.53ms`](./runner/src/bin/runner-par.rs)  |
 
 ## Run solutions
 
