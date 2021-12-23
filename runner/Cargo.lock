@@ -316,6 +316,14 @@ name = "day20b"
 version = "0.1.0"
 
 [[package]]
+name = "day21a"
+version = "0.1.0"
+
+[[package]]
+name = "day21b"
+version = "0.1.0"
+
+[[package]]
 name = "either"
 version = "1.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -653,6 +661,8 @@ dependencies = [
  "day19b",
  "day20a",
  "day20b",
+ "day21a",
+ "day21b",
  "rayon",
  "took",
 ]
