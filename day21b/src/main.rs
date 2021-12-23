@@ -7,7 +7,6 @@ pub fn main() {
         .collect::<Vec<_>>();
 
     let p = [scores(pos[0]), scores(pos[1])];
-    println!("911090395997650");
     println!(
         "{}",
         (1..11)
