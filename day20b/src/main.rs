@@ -1,7 +1,5 @@
 use std::{iter, mem};
 
-#[rustfmt::skip]
-const NEXT: [(isize, isize); 9] = [(-1, -1), (0, -1), (1, -1), (-1, 0), (0, 0), (1, 0), (-1, 1), (0, 1), (1, 1) ];
 const RUNS: usize = 50;
 
 pub fn main() {
@@ -25,16 +23,30 @@ pub fn main() {
     let mut other = map.clone();
 
     for run in 0..RUNS {
-        let outside = run % 2 == 1 && key[0];
+        let out = run % 2 == 1 && key[0];
         (0..map.len()).for_each(|y| {
-            (0..map[0].len()).clone().for_each(|x| {
-                let i = NEXT.iter().fold(0, |abc, offset| {
-                    *map.get(y.overflowing_add(offset.1 as usize).0)
-                        .and_then(|r| r.get(x.overflowing_add(offset.0 as usize).0))
-                        .unwrap_or(&outside) as usize
-                        | (abc << 1)
-                });
+            let rows = [
+                map.get((y as isize - 1) as usize),
+                map.get(y),
+                map.get(y + 1),
+            ];
+            let mut i = rows.iter().fold(0, |i, row| {
+                row.map(|row| {
+                    (-1isize..=1)
+                        .map(|x| *row.get(x as usize).unwrap_or(&out) as usize)
+                        .fold(0usize, |i, c| i << 1 | c)
+                })
+                .unwrap_or(out as usize * 7)
+                    | i << 3
+            });
+
+            (0..map[0].len()).for_each(|x| {
+                let new = (*rows[0].and_then(|r| r.get(x + 1)).unwrap_or(&out) as usize) << 6
+                    | (*rows[1].and_then(|r| r.get(x + 1)).unwrap_or(&out) as usize) << 3
+                    | (*rows[2].and_then(|r| r.get(x + 1)).unwrap_or(&out) as usize);
+                i = i & 0b110110110 | new;
                 other[y][x] = key[i];
+                i <<= 1;
             });
         });
         mem::swap(&mut map, &mut other);
