@@ -69,6 +69,7 @@ Some solutions require Rust Nightly, that's why `+nightly` is included.
 
 ## Other years
 
+- [2024](https://github.com/timvisee/advent-of-code-2024)
 - [2023](https://github.com/timvisee/advent-of-code-2023)
 - [2022](https://github.com/timvisee/advent-of-code-2022)
 - [2021](https://github.com/timvisee/advent-of-code-2021) _(current)_
